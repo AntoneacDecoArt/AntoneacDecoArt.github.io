@@ -27,25 +27,42 @@
       font-size: 28px;
       letter-spacing: 2px;
     }
-    .gallery {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      padding: 20px;
-      background-color: #1a1612;
-      justify-content: center;
-    }
-    .gallery img {
-      max-height: 220px;
+    .slider {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      overflow: hidden;
       border-radius: 6px;
+    }
+    .slides {
+      display: flex;
+      width: 700%;
+      animation: slide 14s infinite;
+    }
+    .slides img {
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .slides img:hover {
+      transform: scale(1.02);
+    }
+    @keyframes slide {
+      0% {margin-left: 0;}
+      14% {margin-left: 0;}
+      28% {margin-left: -100%;}
+      42% {margin-left: -200%;}
+      56% {margin-left: -300%;}
+      70% {margin-left: -400%;}
+      84% {margin-left: -500%;}
+      100% {margin-left: -600%;}
     }
     .hero {
       background-color: #1a1612;
       padding: 40px 20px;
       text-align: center;
-    }
-    .hero h2 {
-      margin-bottom: 20px;
     }
     .btn {
       display: inline-block;
@@ -61,9 +78,6 @@
       padding: 40px 20px;
       background-color: #1a1612;
       text-align: center;
-    }
-    .section h3 {
-      margin-bottom: 10px;
     }
     .section ul {
       list-style: none;
@@ -88,6 +102,28 @@
       padding: 20px;
       font-size: 14px;
     }
+    /* Zoom modal */
+    #modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+    #modal img {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+      margin-top: 5%;
+    }
+    #modal:target {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -98,15 +134,26 @@
     <p>Eleganta in detaliu. Calitate in constructii.</p>
   </header>
 
-  <div class="gallery">
-    <img src="poza1.jpg" alt="lucrare 1">
-    <img src="poza2.jpg" alt="lucrare 2">
-    <img src="poza3.jpg" alt="lucrare 3">
-    <img src="poza4.jpg" alt="lucrare 4">
-    <img src="poza5.jpg" alt="lucrare 5">
-    <img src="poza6.jpg" alt="lucrare 6">
-    <img src="poza7.jpg" alt="lucrare 7">
+  <div class="slider">
+    <div class="slides">
+      <a href="#img1"><img src="poza1.jpg" alt="Lucrare 1"></a>
+      <a href="#img2"><img src="poza2.jpg" alt="Lucrare 2"></a>
+      <a href="#img3"><img src="poza3.jpg" alt="Lucrare 3"></a>
+      <a href="#img4"><img src="poza4.jpg" alt="Lucrare 4"></a>
+      <a href="#img5"><img src="poza5.jpg" alt="Lucrare 5"></a>
+      <a href="#img6"><img src="poza6.jpg" alt="Lucrare 6"></a>
+      <a href="#img7"><img src="poza7.jpg" alt="Lucrare 7"></a>
+    </div>
   </div>
+
+  <!-- Zoom Modal -->
+  <div id="img1" class="modal" onclick="location.href='#'"><img src="poza1.jpg" alt=""></div>
+  <div id="img2" class="modal" onclick="location.href='#'"><img src="poza2.jpg" alt=""></div>
+  <div id="img3" class="modal" onclick="location.href='#'"><img src="poza3.jpg" alt=""></div>
+  <div id="img4" class="modal" onclick="location.href='#'"><img src="poza4.jpg" alt=""></div>
+  <div id="img5" class="modal" onclick="location.href='#'"><img src="poza5.jpg" alt=""></div>
+  <div id="img6" class="modal" onclick="location.href='#'"><img src="poza6.jpg" alt=""></div>
+  <div id="img7" class="modal" onclick="location.href='#'"><img src="poza7.jpg" alt=""></div>
 
   <section class="hero">
     <h2>Executam lucrari de constructii si renovari la cele mai inalte standarde</h2>
@@ -133,7 +180,7 @@
     <p>&copy; 2025 Antoneac Deco Art. Toate drepturile rezervate.</p>
     <div class="social-icons">
       <a href="https://www.facebook.com/share/1Desu8qFpP/" target="_blank">Facebook</a>
-      <a href="#" title="Placeholder Instagram">Instagram</a>
+      <a href="#">Instagram</a>
       <a href="https://www.tiktok.com/@antoneacdecoart?_t=ZN-8wqhOi2dX6s&_r=1" target="_blank">TikTok</a>
     </div>
   </footer>
