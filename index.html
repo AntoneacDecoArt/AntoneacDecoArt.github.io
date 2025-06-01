@@ -27,6 +27,18 @@
       font-size: 28px;
       letter-spacing: 2px;
     }
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 20px;
+      background-color: #1a1612;
+      justify-content: center;
+    }
+    .gallery img {
+      max-height: 220px;
+      border-radius: 6px;
+    }
     .hero {
       background-color: #1a1612;
       padding: 40px 20px;
@@ -60,6 +72,15 @@
     .section ul li {
       margin: 8px 0;
     }
+    .social-icons {
+      margin-top: 20px;
+    }
+    .social-icons a {
+      margin: 0 10px;
+      color: #e5c189;
+      font-size: 18px;
+      text-decoration: none;
+    }
     footer {
       text-align: center;
       background-color: #0e0b09;
@@ -76,6 +97,16 @@
     <h1>Antoneac Deco Art</h1>
     <p>Eleganta in detaliu. Calitate in constructii.</p>
   </header>
+
+  <div class="gallery">
+    <img src="poza1.jpg" alt="lucrare 1">
+    <img src="poza2.jpg" alt="lucrare 2">
+    <img src="poza3.jpg" alt="lucrare 3">
+    <img src="poza4.jpg" alt="lucrare 4">
+    <img src="poza5.jpg" alt="lucrare 5">
+    <img src="poza6.jpg" alt="lucrare 6">
+    <img src="poza7.jpg" alt="lucrare 7">
+  </div>
 
   <section class="hero">
     <h2>Executam lucrari de constructii si renovari la cele mai inalte standarde</h2>
@@ -100,6 +131,11 @@
 
   <footer>
     <p>&copy; 2025 Antoneac Deco Art. Toate drepturile rezervate.</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/share/1Desu8qFpP/" target="_blank">Facebook</a>
+      <a href="#" title="Placeholder Instagram">Instagram</a>
+      <a href="https://www.tiktok.com/@antoneacdecoart?_t=ZN-8wqhOi2dX6s&_r=1" target="_blank">TikTok</a>
+    </div>
   </footer>
 
 </body>
