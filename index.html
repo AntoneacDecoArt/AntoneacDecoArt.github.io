@@ -44,10 +44,7 @@
       width: 100%;
       height: auto;
       cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .slides img:hover {
-      transform: scale(1.02);
+      transition: opacity 0.3s ease;
     }
     @keyframes slide {
       0% {margin-left: 0;}
@@ -102,8 +99,9 @@
       padding: 20px;
       font-size: 14px;
     }
-    /* Zoom modal */
-    #modal {
+
+    /* Lightbox modal */
+    .lightbox {
       display: none;
       position: fixed;
       z-index: 999;
@@ -111,20 +109,28 @@
       top: 0;
       width: 100%;
       height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
     }
-    #modal img {
-      margin: auto;
-      display: block;
+
+    .lightbox img {
       max-width: 90%;
       max-height: 90%;
-      margin-top: 5%;
-    }
-    #modal:target {
-      display: block;
     }
   </style>
+  <script>
+    function showImage(src) {
+      const modal = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      modal.style.display = 'flex';
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  </script>
 </head>
 <body>
 
@@ -136,24 +142,19 @@
 
   <div class="slider">
     <div class="slides">
-      <a href="#img1"><img src="poza1.jpg" alt="Lucrare 1"></a>
-      <a href="#img2"><img src="poza2.jpg" alt="Lucrare 2"></a>
-      <a href="#img3"><img src="poza3.jpg" alt="Lucrare 3"></a>
-      <a href="#img4"><img src="poza4.jpg" alt="Lucrare 4"></a>
-      <a href="#img5"><img src="poza5.jpg" alt="Lucrare 5"></a>
-      <a href="#img6"><img src="poza6.jpg" alt="Lucrare 6"></a>
-      <a href="#img7"><img src="poza7.jpg" alt="Lucrare 7"></a>
+      <img src="poza1.jpg" onclick="showImage(this.src)" alt="Lucrare 1">
+      <img src="poza2.jpg" onclick="showImage(this.src)" alt="Lucrare 2">
+      <img src="poza3.jpg" onclick="showImage(this.src)" alt="Lucrare 3">
+      <img src="poza4.jpg" onclick="showImage(this.src)" alt="Lucrare 4">
+      <img src="poza5.jpg" onclick="showImage(this.src)" alt="Lucrare 5">
+      <img src="poza6.jpg" onclick="showImage(this.src)" alt="Lucrare 6">
+      <img src="poza7.jpg" onclick="showImage(this.src)" alt="Lucrare 7">
     </div>
   </div>
 
-  <!-- Zoom Modal -->
-  <div id="img1" class="modal" onclick="location.href='#'"><img src="poza1.jpg" alt=""></div>
-  <div id="img2" class="modal" onclick="location.href='#'"><img src="poza2.jpg" alt=""></div>
-  <div id="img3" class="modal" onclick="location.href='#'"><img src="poza3.jpg" alt=""></div>
-  <div id="img4" class="modal" onclick="location.href='#'"><img src="poza4.jpg" alt=""></div>
-  <div id="img5" class="modal" onclick="location.href='#'"><img src="poza5.jpg" alt=""></div>
-  <div id="img6" class="modal" onclick="location.href='#'"><img src="poza6.jpg" alt=""></div>
-  <div id="img7" class="modal" onclick="location.href='#'"><img src="poza7.jpg" alt=""></div>
+  <div id="lightbox" class="lightbox" onclick="closeImage()">
+    <img id="lightbox-img" src="">
+  </div>
 
   <section class="hero">
     <h2>Executam lucrari de constructii si renovari la cele mai inalte standarde</h2>
