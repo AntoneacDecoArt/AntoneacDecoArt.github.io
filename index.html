@@ -167,7 +167,26 @@
     .shake {
       animation: shake 0.4s ease-in-out;
     }
-    </style>
+    
+    #contactBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #e5c189;
+      color: #0e0b09;
+      padding: 12px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+
+    #contactBtn:hover {
+      background-color: #f1d399;
+    }
+</style>
 
 </head>
 <body>
@@ -203,7 +222,7 @@
     <img id="lightbox-img" src="">
   </div>
 
-  <section class="hero">
+  <section class="hero" id="contact">
     <h2>Executăm lucrări de construcții și renovări la cele mai înalte standarde</h2>
     <a href="tel:+40740249107" class="btn" id="btn1">Sună acum</a>
     <a href="https://wa.me/40740249107" class="btn" target="_blank" id="btn2">Lasă un mesaj</a>
@@ -325,5 +344,6 @@
     }, 2000); // 2 secunde delay între butoane
   }, 5000); // la fiecare 5 secunde
 </script>
+<a href="#contact" id="contactBtn">Contactează-ne</a>
 </body>
 </html>
