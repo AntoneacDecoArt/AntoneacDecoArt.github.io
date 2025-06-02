@@ -38,7 +38,7 @@
     .slides {
       display: flex;
       width: 700%;
-      animation: slide 35s infinite;
+      animation: slide 21s infinite;
     }
     .slides img {
       width: 100%;
@@ -50,7 +50,17 @@
       box-sizing: border-box;
       cursor: pointer;
     }
+    
     @keyframes slide {
+      0% {margin-left: -600%;}
+      14.28% {margin-left: -600%;}
+      28.56% {margin-left: -500%;}
+      42.84% {margin-left: -400%;}
+      57.12% {margin-left: -300%;}
+      71.4% {margin-left: -200%;}
+      85.68% {margin-left: -100%;}
+      100% {margin-left: 0;}
+    
       0% {margin-left: 0;}
       14.28% {margin-left: 0;}
       28.56% {margin-left: -100%;}
