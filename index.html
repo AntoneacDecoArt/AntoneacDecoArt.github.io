@@ -84,20 +84,20 @@
       100% { transform: translateX(0); }
     }
 
-    @keyframes pulse {
+    
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
 
-    @keyframes bounce {
+    
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
 
     .shake { animation: shake 0.5s ease-in-out; }
-    .pulse { animation: pulse 0.5s ease-in-out; }
-    .bounce { animation: bounce 0.5s ease-in-out; }
+    
+    
 
     .section {
       padding: 40px 20px;
@@ -153,6 +153,11 @@
     <img src="logo-antoneac-deco-art.jpg" alt="Logo Antoneac Deco Art">
     <h1>Antoneac Deco Art</h1>
     <p>Eleganță în detaliu. Calitate în construcții.</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/share/1Desu8qFpP/" target="_blank">Facebook</a>
+      <a href="https://www.tiktok.com/@antoneacdecoart?_t=ZN-8wqhOi2dX6s&_r=1" target="_blank">TikTok</a>
+    </div>
+
   </header>
 
   <div class="slider">
@@ -194,11 +199,6 @@
 
   <footer>
     <p>&copy; 2025 Antoneac Deco Art. Toate drepturile rezervate.</p>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/share/1Desu8qFpP/" target="_blank">Facebook</a>
-      <a href="#">Instagram</a>
-      <a href="https://www.tiktok.com/@antoneacdecoart?_t=ZN-8wqhOi2dX6s&_r=1" target="_blank">TikTok</a>
-    </div>
   </footer>
 
   <script>
@@ -214,6 +214,28 @@
 
     setInterval(() => applyRandomEffect('btn1'), 5000);
     setInterval(() => setTimeout(() => applyRandomEffect('btn2'), 2500), 5000);
+
+    function showImage(src) {
+      const modal = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      modal.style.display = 'flex';
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  
+  <script>
+    function applyShake(id) {
+      const btn = document.getElementById(id);
+      btn.classList.remove('shake');
+      void btn.offsetWidth;
+      btn.classList.add('shake');
+    }
+
+    setInterval(() => applyShake('btn1'), 5000);
+    setInterval(() => setTimeout(() => applyShake('btn2'), 2500), 5000);
 
     function showImage(src) {
       const modal = document.getElementById('lightbox');
