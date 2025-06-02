@@ -38,7 +38,7 @@
     .slides {
       display: flex;
       width: 700%;
-      animation: slide 14s infinite;
+      animation: slide 35s infinite;
     }
     .slides img {
       width: 100%;
@@ -49,16 +49,15 @@
       padding: 10px;
       box-sizing: border-box;
       cursor: pointer;
-      transition: opacity 0.3s ease;
     }
     @keyframes slide {
       0% {margin-left: 0;}
-      14% {margin-left: 0;}
-      28% {margin-left: -100%;}
-      42% {margin-left: -200%;}
-      56% {margin-left: -300%;}
-      70% {margin-left: -400%;}
-      84% {margin-left: -500%;}
+      14.28% {margin-left: 0;}
+      28.56% {margin-left: -100%;}
+      42.84% {margin-left: -200%;}
+      57.12% {margin-left: -300%;}
+      71.4% {margin-left: -400%;}
+      85.68% {margin-left: -500%;}
       100% {margin-left: -600%;}
     }
     .hero {
@@ -76,6 +75,30 @@
       border-radius: 4px;
       font-weight: bold;
     }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .shake { animation: shake 0.5s ease-in-out; }
+    .pulse { animation: pulse 0.5s ease-in-out; }
+    .bounce { animation: bounce 0.5s ease-in-out; }
+
     .section {
       padding: 40px 20px;
       background-color: #1a1612;
@@ -105,7 +128,6 @@
       font-size: 14px;
     }
 
-    /* Lightbox modal */
     .lightbox {
       display: none;
       position: fixed;
@@ -124,25 +146,13 @@
       max-height: 90%;
     }
   </style>
-  <script>
-    function showImage(src) {
-      const modal = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      img.src = src;
-      modal.style.display = 'flex';
-    }
-
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
-  </script>
 </head>
 <body>
 
   <header>
     <img src="logo-antoneac-deco-art.jpg" alt="Logo Antoneac Deco Art">
     <h1>Antoneac Deco Art</h1>
-    <p>Eleganta in detaliu. Calitate in constructii.</p>
+    <p>Eleganță în detaliu. Calitate în construcții.</p>
   </header>
 
   <div class="slider">
@@ -162,24 +172,24 @@
   </div>
 
   <section class="hero">
-    <h2>Executam lucrari de constructii si renovari la cele mai inalte standarde</h2>
-    <a href="tel:+40740249107" class="btn">Suna acum</a>
-    <a href="https://wa.me/40740249107" class="btn" target="_blank">Lasa un mesaj</a>
+    <h2>Executăm lucrări de construcții și renovări la cele mai înalte standarde</h2>
+    <a href="tel:+40740249107" class="btn" id="btn1">Sună acum</a>
+    <a href="https://wa.me/40740249107" class="btn" target="_blank" id="btn2">Lasă un mesaj</a>
   </section>
 
   <section class="section">
     <h3>Servicii oferite</h3>
     <ul>
-      <li>Renovari interioare si exterioare</li>
+      <li>Renovări interioare și exterioare</li>
       <li>Glet, vopsitorii, rigips, tencuieli</li>
-      <li>Montaj gresie, faianta si parchet</li>
-      <li>Placari decorative si finisaje moderne</li>
+      <li>Montaj gresie, faianță și parchet</li>
+      <li>Placări decorative și finisaje moderne</li>
     </ul>
   </section>
 
   <section class="section">
-    <h3>Locatie</h3>
-    <p>Suceava, Romania</p>
+    <h3>Locație</h3>
+    <p>Suceava, România</p>
   </section>
 
   <footer>
@@ -191,5 +201,30 @@
     </div>
   </footer>
 
+  <script>
+    const effects = ['shake', 'pulse', 'bounce'];
+
+    function applyRandomEffect(id) {
+      const btn = document.getElementById(id);
+      btn.classList.remove(...effects);
+      void btn.offsetWidth;
+      const effect = effects[Math.floor(Math.random() * effects.length)];
+      btn.classList.add(effect);
+    }
+
+    setInterval(() => applyRandomEffect('btn1'), 5000);
+    setInterval(() => setTimeout(() => applyRandomEffect('btn2'), 2500), 5000);
+
+    function showImage(src) {
+      const modal = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      modal.style.display = 'flex';
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
