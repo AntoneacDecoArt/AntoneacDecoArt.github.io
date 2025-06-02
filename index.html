@@ -124,6 +124,35 @@
       max-height: 90%;
     }
   
+    @keyframes slide {
+      0% {margin-left: 0;}
+      12.5% {margin-left: 0;}
+      25% {margin-left: -100%;}
+      37.5% {margin-left: -100%;}
+      50% {margin-left: -200%;}
+      62.5% {margin-left: -200%;}
+      75% {margin-left: -300%;}
+      87.5% {margin-left: -300%;}
+      100% {margin-left: -400%;}
+    }
+
+    .slides {
+      display: flex;
+      width: 700%;
+      animation: slide 28s infinite;
+    }
+
+    .slides img {
+      width: 100%;
+      height: auto;
+      max-height: 350px;
+      object-fit: contain;
+      background: #000;
+      padding: 10px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
     @keyframes shake {
       0% { transform: translateX(0); }
       25% { transform: translateX(-5px); }
@@ -138,13 +167,25 @@
       100% { transform: scale(1); }
     }
 
-    .btn.shake {
-      animation: shake 0.5s ease-in-out;
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
-    .btn.pulse {
-      animation: pulse 0.5s ease-in-out;
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      background-color: #e5c189;
+      color: #0e0b09;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
     }
+
+    .shake { animation: shake 0.6s ease-in-out; }
+    .pulse { animation: pulse 0.6s ease-in-out; }
+    .bounce { animation: bounce 0.6s ease-in-out; }
     </style>
 
 </head>
@@ -180,8 +221,8 @@
 
   <section class="hero">
     <h2>Executăm lucrări de construcții și renovări la cele mai înalte standarde</h2>
-    <a href="tel:+40740249107" class="btn shake">Sună acum</a>
-    <a href="https://wa.me/40740249107" class="btn pulse" target="_blank">Lasă un mesaj</a>
+    <a href="tel:+40740249107" class="btn">Sună acum</a>
+    <a href="https://wa.me/40740249107" class="btn" target="_blank">Lasă un mesaj</a>
   </section>
 
   <section class="section">
@@ -229,21 +270,29 @@
 
 
 <script>
-  const btns = document.querySelectorAll('.btn');
-  setInterval(() => {
-    if (btns.length > 0) {
-      btns[0].classList.remove('shake');
-      void btns[0].offsetWidth;
-      btns[0].classList.add('shake');
-    }
-    if (btns.length > 1) {
-      setTimeout(() => {
-        btns[1].classList.remove('pulse');
-        void btns[1].offsetWidth;
-        btns[1].classList.add('pulse');
-      }, 500); // 0.5s delay between button effects
-    }
-  }, 10000); // every 10 seconds
+  const effects = ['shake', 'pulse', 'bounce'];
+
+  function applyRandomEffect(btnId) {
+    const btn = document.getElementById(btnId);
+    const effect = effects[Math.floor(Math.random() * effects.length)];
+    btn.classList.remove('shake', 'pulse', 'bounce');
+    void btn.offsetWidth; // reflow
+    btn.classList.add(effect);
+  }
+
+  setInterval(() => applyRandomEffect('btn1'), 5000);  // după 5 secunde
+  setInterval(() => setTimeout(() => applyRandomEffect('btn2'), 2500), 5000); // delay între ele
+
+  function showImage(src) {
+    const modal = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    modal.style.display = 'flex';
+  }
+
+  function closeImage() {
+    document.getElementById('lightbox').style.display = 'none';
+  }
 </script>
 </body>
 </html>
