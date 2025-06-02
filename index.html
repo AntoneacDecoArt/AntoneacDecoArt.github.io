@@ -155,7 +155,20 @@
       max-width: 90%;
       max-height: 90%;
     }
-  </style>
+  
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    .shake {
+      animation: shake 0.4s ease-in-out;
+    }
+    </style>
+
 </head>
 <body>
 
@@ -284,6 +297,33 @@
   function closeImage() {
     document.getElementById('lightbox').style.display = 'none';
   }
+</script>
+
+<script>
+  function showImage(src) {
+    const modal = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    modal.style.display = 'flex';
+  }
+
+  function closeImage() {
+    document.getElementById('lightbox').style.display = 'none';
+  }
+
+  function applyShake(id) {
+    const btn = document.getElementById(id);
+    btn.classList.remove('shake');
+    void btn.offsetWidth;
+    btn.classList.add('shake');
+  }
+
+  setInterval(() => {
+    applyShake('btn1');
+    setTimeout(() => {
+      applyShake('btn2');
+    }, 2000); // 2 secunde delay între butoane
+  }, 5000); // la fiecare 5 secunde
 </script>
 </body>
 </html>
