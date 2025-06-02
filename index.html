@@ -262,5 +262,28 @@
       document.getElementById('lightbox').style.display = 'none';
     }
   </script>
+
+<script>
+  function applyShake(id) {
+    const btn = document.getElementById(id);
+    btn.classList.remove('shake');
+    void btn.offsetWidth;
+    btn.classList.add('shake');
+  }
+
+  setInterval(() => applyShake('btn1'), 5000);
+  setInterval(() => setTimeout(() => applyShake('btn2'), 2500), 5000);
+
+  function showImage(src) {
+    const modal = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    modal.style.display = 'flex';
+  }
+
+  function closeImage() {
+    document.getElementById('lightbox').style.display = 'none';
+  }
+</script>
 </body>
 </html>
