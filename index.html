@@ -41,8 +41,8 @@
     }
     .slides {
       display: flex;
+      transition: transform 1s ease-in-out;
       width: 700%;
-      animation: slide 14s infinite;
     }
     .slides img {
       width: 100%;
@@ -53,17 +53,6 @@
       padding: 10px;
       box-sizing: border-box;
       cursor: pointer;
-      transition: opacity 0.3s ease;
-    }
-    @keyframes slide {
-      0% {margin-left: 0;}
-      14% {margin-left: 0;}
-      28% {margin-left: -100%;}
-      42% {margin-left: -200%;}
-      56% {margin-left: -300%;}
-      70% {margin-left: -400%;}
-      84% {margin-left: -500%;}
-      100% {margin-left: -600%;}
     }
     .hero {
       background-color: #1a1612;
@@ -134,19 +123,30 @@
       max-width: 90%;
       max-height: 90%;
     }
-  </style>
-  <script>
-    function showImage(src) {
-      const modal = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      img.src = src;
-      modal.style.display = 'flex';
+  
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
     }
 
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
-  </script>
+
+    .btn.shake {
+      animation: shake 0.5s ease-in-out;
+    }
+
+    .btn.pulse {
+      animation: pulse 0.5s ease-in-out;
+    }
+    </style>
+
 </head>
 <body>
 
@@ -157,7 +157,7 @@
   </header>
 
   <div class="slider">
-    <div class="slides">
+    <div class="slides" id="slides">
       <img src="poza1.jpg" onclick="showImage(this.src)" alt="Lucrare 1">
       <img src="poza2.jpg" onclick="showImage(this.src)" alt="Lucrare 2">
       <img src="poza3.jpg" onclick="showImage(this.src)" alt="Lucrare 3">
@@ -180,8 +180,8 @@
 
   <section class="hero">
     <h2>Executăm lucrări de construcții și renovări la cele mai înalte standarde</h2>
-    <a href="tel:+40740249107" class="btn">Sună acum</a>
-    <a href="https://wa.me/40740249107" class="btn" target="_blank">Lasă un mesaj</a>
+    <a href="tel:+40740249107" class="btn shake">Sună acum</a>
+    <a href="https://wa.me/40740249107" class="btn pulse" target="_blank">Lasă un mesaj</a>
   </section>
 
   <section class="section">
@@ -203,5 +203,47 @@
     <p>&copy; 2025 Antoneac Deco Art. Toate drepturile rezervate.</p>
   </footer>
 
+  <script>
+    let index = 0;
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+
+    function showSlides() {
+      index = (index + 1) % totalSlides;
+      slides.style.transform = 'translateX(' + (-index * 100) + '%)';
+    }
+
+    setInterval(showSlides, 4000); // every 4 seconds
+
+    function showImage(src) {
+      const modal = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      modal.style.display = 'flex';
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  </script>
+
+
+<script>
+  const btns = document.querySelectorAll('.btn');
+  setInterval(() => {
+    if (btns.length > 0) {
+      btns[0].classList.remove('shake');
+      void btns[0].offsetWidth;
+      btns[0].classList.add('shake');
+    }
+    if (btns.length > 1) {
+      setTimeout(() => {
+        btns[1].classList.remove('pulse');
+        void btns[1].offsetWidth;
+        btns[1].classList.add('pulse');
+      }, 500); // 0.5s delay between button effects
+    }
+  }, 10000); // every 10 seconds
+</script>
 </body>
 </html>
