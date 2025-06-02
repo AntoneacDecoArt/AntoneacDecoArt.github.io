@@ -27,20 +27,18 @@
       font-size: 28px;
       letter-spacing: 2px;
     }
-    .slider {
+    .carousel-container {
       position: relative;
-      width: 100%;
       max-width: 800px;
       margin: auto;
       overflow: hidden;
       border-radius: 6px;
     }
-    .slides {
+    .carousel-track {
       display: flex;
-      width: 700%;
-      animation: slide 21s infinite;
+      transition: transform 0.6s ease-in-out;
     }
-    .slides img {
+    .carousel-track img {
       width: 100%;
       height: auto;
       max-height: 350px;
@@ -48,33 +46,33 @@
       background: #000;
       padding: 10px;
       box-sizing: border-box;
+      flex-shrink: 0;
       cursor: pointer;
     }
-    
-    @keyframes slide {
-      0% {margin-left: -600%;}
-      14.28% {margin-left: -600%;}
-      28.56% {margin-left: -500%;}
-      42.84% {margin-left: -400%;}
-      57.12% {margin-left: -300%;}
-      71.4% {margin-left: -200%;}
-      85.68% {margin-left: -100%;}
-      100% {margin-left: 0;}
-    
-      0% {margin-left: 0;}
-      14.28% {margin-left: 0;}
-      28.56% {margin-left: -100%;}
-      42.84% {margin-left: -200%;}
-      57.12% {margin-left: -300%;}
-      71.4% {margin-left: -400%;}
-      85.68% {margin-left: -500%;}
-      100% {margin-left: -600%;}
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border: none;
+      font-size: 24px;
+      padding: 10px 15px;
+      cursor: pointer;
+      z-index: 10;
     }
+    .carousel-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .carousel-btn.prev { left: 0; }
+    .carousel-btn.next { right: 0; }
+
     .hero {
       background-color: #1a1612;
       padding: 40px 20px;
       text-align: center;
     }
+
     .btn {
       display: inline-block;
       margin: 10px;
@@ -94,20 +92,9 @@
       100% { transform: translateX(0); }
     }
 
-    
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    .shake {
+      animation: shake 0.5s ease-in-out;
     }
-
-    
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .shake { animation: shake 0.5s ease-in-out; }
-    
-    
 
     .section {
       padding: 40px 20px;
@@ -121,15 +108,18 @@
     .section ul li {
       margin: 8px 0;
     }
+
     .social-icons {
       margin-top: 20px;
     }
+
     .social-icons a {
       margin: 0 10px;
       color: #e5c189;
       font-size: 18px;
       text-decoration: none;
     }
+
     footer {
       text-align: center;
       background-color: #0e0b09;
@@ -155,19 +145,7 @@
       max-width: 90%;
       max-height: 90%;
     }
-  
-    @keyframes shake {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      50% { transform: translateX(5px); }
-      75% { transform: translateX(-5px); }
-      100% { transform: translateX(0); }
-    }
 
-    .shake {
-      animation: shake 0.4s ease-in-out;
-    }
-    
     #contactBtn {
       position: fixed;
       bottom: 20px;
@@ -186,8 +164,7 @@
     #contactBtn:hover {
       background-color: #f1d399;
     }
-</style>
-
+  </style>
 </head>
 <body>
 
@@ -197,19 +174,20 @@
     <p>Eleganță în detaliu. Calitate în construcții.</p>
   </header>
 
-  <div class="slider">
-    <div class="slides">
-      <img src="poza1.jpg" onclick="showImage(this.src)" alt="Lucrare 1">
-      <img src="poza2.jpg" onclick="showImage(this.src)" alt="Lucrare 2">
-      <img src="poza3.jpg" onclick="showImage(this.src)" alt="Lucrare 3">
-      <img src="poza4.jpg" onclick="showImage(this.src)" alt="Lucrare 4">
-      <img src="poza5.jpg" onclick="showImage(this.src)" alt="Lucrare 5">
-      <img src="poza6.jpg" onclick="showImage(this.src)" alt="Lucrare 6">
-      <img src="poza7.jpg" onclick="showImage(this.src)" alt="Lucrare 7">
+  <div class="carousel-container">
+    <button class="carousel-btn prev">&#10094;</button>
+    <div class="carousel-track" id="carouselTrack">
+      <img src="poza1.jpg" onclick="showImage(this.src)">
+      <img src="poza2.jpg" onclick="showImage(this.src)">
+      <img src="poza3.jpg" onclick="showImage(this.src)">
+      <img src="poza4.jpg" onclick="showImage(this.src)">
+      <img src="poza5.jpg" onclick="showImage(this.src)">
+      <img src="poza6.jpg" onclick="showImage(this.src)">
+      <img src="poza7.jpg" onclick="showImage(this.src)">
     </div>
+    <button class="carousel-btn next">&#10095;</button>
   </div>
 
-  
   <div class="section">
     <p style="margin-bottom: 10px;">Vezi mai multe lucrări și clipuri pe paginile noastre de social media:</p>
     <div class="social-icons">
@@ -218,7 +196,7 @@
     </div>
   </div>
 
-  <div id="lightbox" class="lightbox" onclick="closeImage()">
+  <div class="lightbox" id="lightbox" onclick="closeImage()">
     <img id="lightbox-img" src="">
   </div>
 
@@ -247,19 +225,27 @@
     <p>&copy; 2025 Antoneac Deco Art. Toate drepturile rezervate.</p>
   </footer>
 
-  <script>
-    const effects = ['shake', 'pulse', 'bounce'];
+  <a href="#contact" id="contactBtn">Contactează-ne</a>
 
-    function applyRandomEffect(id) {
-      const btn = document.getElementById(id);
-      btn.classList.remove(...effects);
-      void btn.offsetWidth;
-      const effect = effects[Math.floor(Math.random() * effects.length)];
-      btn.classList.add(effect);
+  <script>
+    const track = document.getElementById('carouselTrack');
+    const images = track.querySelectorAll('img');
+    let index = 0;
+
+    function moveToImage(i) {
+      index = (i + images.length) % images.length;
+      track.style.transform = 'translateX(' + (-index * 100) + '%)';
     }
 
-    setInterval(() => applyRandomEffect('btn1'), 5000);
-    setInterval(() => setTimeout(() => applyRandomEffect('btn2'), 2500), 5000);
+    document.querySelector('.next').addEventListener('click', () => {
+      moveToImage(index + 1);
+    });
+
+    document.querySelector('.prev').addEventListener('click', () => {
+      moveToImage(index - 1);
+    });
+
+    setInterval(() => moveToImage(index + 1), 3000);
 
     function showImage(src) {
       const modal = document.getElementById('lightbox');
@@ -271,8 +257,7 @@
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
     }
-  
-  <script>
+
     function applyShake(id) {
       const btn = document.getElementById(id);
       btn.classList.remove('shake');
@@ -282,68 +267,6 @@
 
     setInterval(() => applyShake('btn1'), 5000);
     setInterval(() => setTimeout(() => applyShake('btn2'), 2500), 5000);
-
-    function showImage(src) {
-      const modal = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      img.src = src;
-      modal.style.display = 'flex';
-    }
-
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
   </script>
-
-<script>
-  function applyShake(id) {
-    const btn = document.getElementById(id);
-    btn.classList.remove('shake');
-    void btn.offsetWidth;
-    btn.classList.add('shake');
-  }
-
-  setInterval(() => applyShake('btn1'), 5000);
-  setInterval(() => setTimeout(() => applyShake('btn2'), 2500), 5000);
-
-  function showImage(src) {
-    const modal = document.getElementById('lightbox');
-    const img = document.getElementById('lightbox-img');
-    img.src = src;
-    modal.style.display = 'flex';
-  }
-
-  function closeImage() {
-    document.getElementById('lightbox').style.display = 'none';
-  }
-</script>
-
-<script>
-  function showImage(src) {
-    const modal = document.getElementById('lightbox');
-    const img = document.getElementById('lightbox-img');
-    img.src = src;
-    modal.style.display = 'flex';
-  }
-
-  function closeImage() {
-    document.getElementById('lightbox').style.display = 'none';
-  }
-
-  function applyShake(id) {
-    const btn = document.getElementById(id);
-    btn.classList.remove('shake');
-    void btn.offsetWidth;
-    btn.classList.add('shake');
-  }
-
-  setInterval(() => {
-    applyShake('btn1');
-    setTimeout(() => {
-      applyShake('btn2');
-    }, 2000); // 2 secunde delay între butoane
-  }, 5000); // la fiecare 5 secunde
-</script>
-<a href="#contact" id="contactBtn">Contactează-ne</a>
 </body>
 </html>
