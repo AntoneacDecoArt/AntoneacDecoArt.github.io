@@ -138,7 +138,23 @@
     <a href="#contact" onclick="toggleMenu()">Contact</a>
   </div>
 
+  
+  <div class="carousel-container" style="position: relative; max-width: 800px; margin: 30px auto 10px;">
+    <button class="carousel-btn prev" onclick="moveToImage(index - 1)">&#10094;</button>
+    <div class="carousel-track" id="carouselTrack" style="display: flex; transition: transform 0.6s ease-in-out;">
+      <img src="poza1.jpg" onclick="showImage(this.src)" style="width:100%;max-height:350px;object-fit:contain;flex-shrink:0;padding:10px;">
+      <img src="poza2.jpg" onclick="showImage(this.src)" style="width:100%;max-height:350px;object-fit:contain;flex-shrink:0;padding:10px;">
+      <img src="poza3.jpg" onclick="showImage(this.src)" style="width:100%;max-height:350px;object-fit:contain;flex-shrink:0;padding:10px;">
+    </div>
+    <button class="carousel-btn next" onclick="moveToImage(index + 1)">&#10095;</button>
+  </div>
+
+  <div class="lightbox" id="lightbox" onclick="closeImage()" style="display:none;position:fixed;z-index:999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;">
+    <img id="lightbox-img" style="max-width:90%;max-height:90%;" />
+  </div>
+
   <section class="hero" id="contact">
+
     <h2>Executăm lucrări de construcții și renovări la cele mai înalte standarde</h2>
     <a href="tel:+40740249107" class="btn" id="btn1">Sună acum</a>
     <a href="https://wa.me/40740249107" class="btn" target="_blank" id="btn2">Lasă un mesaj</a>
@@ -183,6 +199,29 @@
 
     setInterval(() => applyShake('btn1'), 5000);
     setInterval(() => setTimeout(() => applyShake('btn2'), 2500), 5000);
+
+    let index = 0;
+    const track = document.getElementById('carouselTrack');
+    const images = track.querySelectorAll('img');
+
+    function moveToImage(i) {
+      index = (i + images.length) % images.length;
+      track.style.transform = 'translateX(' + (-index * 100) + '%)';
+    }
+
+    setInterval(() => moveToImage(index + 1), 5000);
+
+    function showImage(src) {
+      const modal = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      modal.style.display = 'flex';
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
   </script>
 </body>
 </html>
