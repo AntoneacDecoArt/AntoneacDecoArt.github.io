@@ -13,9 +13,7 @@
       color: #e5c189;
     }
     header {
-  position: sticky;
-  top: 0;
-  z-index: 1002;
+  position: relative;
       text-align: center;
       padding: 20px;
       background-color: #1a1612;
@@ -68,6 +66,9 @@
   
 .hamburger {
   position: absolute;
+  top: 20px;
+  right: 20px;
+  position: absolute;
   top: 30px;
   right: 20px;
   cursor: pointer;
@@ -118,7 +119,7 @@
 
   <div class="filters">
     <button onclick="filterGallery('all')">Toate</button>
-    <button onclick="filterGallery('interior')">Șcafuri și finisaje interioare</button>
+    <button onclick="filterGallery('interior')">Șcafe și finisaje interioare</button>
     <button onclick="filterGallery('fatade')">Fațade exterioare</button>
     <button onclick="filterGallery('baie')">Amenajări băi</button>
     <button onclick="filterGallery('trepte')">Trepte interioare</button>
