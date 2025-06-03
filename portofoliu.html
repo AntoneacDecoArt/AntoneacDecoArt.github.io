@@ -103,9 +103,7 @@
 
 
 .hamburger {
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 8px 14px;
-  border-radius: 6px;
+  
   position: fixed;
   top: 20px;
   right: 20px;
@@ -139,6 +137,12 @@
   background-color: #2c241d;
 }
 
+
+.filters button.active {
+  background-color: #c9a762;
+  color: #0e0b09;
+}
+
 </style>
 </head>
 <body>
@@ -160,11 +164,11 @@
   <a href="index.html#contact" onclick="toggleMenu()">Contact</a>
 </div>
 
-    <h1>Portofoliu lucrări</h1>
-    <p>Alege o categorie pentru a vizualiza lucrările noastre</p>
+    
   </header>
 
-  <div class="filters">
+  <div style="text-align:center; margin-top: 20px;"><h2>Portofoliu lucrări</h2><p>Alege o categorie pentru a vizualiza lucrările noastre</p></div>
+<div class="filters">
     <button onclick="filterGallery('all')">Toate</button>
     <button onclick="filterGallery('interior')">Șcafe și finisaje interioare</button>
     <button onclick="filterGallery('fatade')">Fațade exterioare</button>
@@ -193,6 +197,15 @@
   <script>
     function filterGallery(category) {
       const images = document.querySelectorAll('.gallery img');
+      
+  const buttons = document.querySelectorAll('.filters button');
+  buttons.forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('onclick').includes(category)) {
+      btn.classList.add('active');
+    }
+  });
+
       images.forEach(img => {
         img.style.display = (category === 'all' || img.dataset.category === category) ? 'block' : 'none';
       });
