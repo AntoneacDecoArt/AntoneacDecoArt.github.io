@@ -2,13 +2,14 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Antoneac Deco Art</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
+      padding: 0;
       background-color: #0e0b09;
       color: #e5c189;
     }
@@ -62,65 +63,6 @@
     .menu a:hover {
       background-color: #2c241d;
     }
-
-    .hero, .section, footer {
-      text-align: center;
-      padding: 40px 20px;
-      background-color: #1a1612;
-    }
-
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      background-color: #e5c189;
-      color: #0e0b09;
-      padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-    }
-
-    @keyframes shake {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      50% { transform: translateX(5px); }
-      75% { transform: translateX(-5px); }
-      100% { transform: translateX(0); }
-    }
-
-    .shake {
-      animation: shake 0.5s ease-in-out;
-    }
-
-    .social-icons {
-      margin-top: 20px;
-    }
-
-    .social-icons a {
-      margin: 0 10px;
-      color: #e5c189;
-      font-size: 18px;
-      text-decoration: none;
-    }
-
-    #contactBtn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #e5c189;
-      color: #0e0b09;
-      padding: 12px 20px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      z-index: 1000;
-      transition: background-color 0.3s;
-    }
-
-    #contactBtn:hover {
-      background-color: #f1d399;
-    }
   </style>
 </head>
 <body>
@@ -129,7 +71,7 @@
     <div class="hamburger" onclick="toggleMenu()">☰</div>
     <img src="logo-antoneac-deco-art.jpg" alt="Logo Antoneac Deco Art">
     <h1>Antoneac Deco Art</h1>
-    <p>Eleganță în detaliu. Calitate în construcții.</p>
+    <p>Eleganta in detaliu. Calitate in constructii.</p>
   </header>
 
   <div class="menu" id="menu">
@@ -138,90 +80,11 @@
     <a href="#contact" onclick="toggleMenu()">Contact</a>
   </div>
 
-  
-  <div class="carousel-container" style="position: relative; max-width: 800px; margin: 30px auto 10px;">
-    <button class="carousel-btn prev" onclick="moveToImage(index - 1)">&#10094;</button>
-    <div class="carousel-track" id="carouselTrack" style="display: flex; transition: transform 0.6s ease-in-out;">
-      <img src="poza1.jpg" onclick="showImage(this.src)" style="width:100%;max-height:350px;object-fit:contain;flex-shrink:0;padding:10px;">
-      <img src="poza2.jpg" onclick="showImage(this.src)" style="width:100%;max-height:350px;object-fit:contain;flex-shrink:0;padding:10px;">
-      <img src="poza3.jpg" onclick="showImage(this.src)" style="width:100%;max-height:350px;object-fit:contain;flex-shrink:0;padding:10px;">
-    </div>
-    <button class="carousel-btn next" onclick="moveToImage(index + 1)">&#10095;</button>
-  </div>
-
-  <div class="lightbox" id="lightbox" onclick="closeImage()" style="display:none;position:fixed;z-index:999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;">
-    <img id="lightbox-img" style="max-width:90%;max-height:90%;" />
-  </div>
-
-  <section class="hero" id="contact">
-
-    <h2>Executăm lucrări de construcții și renovări la cele mai înalte standarde</h2>
-    <a href="tel:+40740249107" class="btn" id="btn1">Sună acum</a>
-    <a href="https://wa.me/40740249107" class="btn" target="_blank" id="btn2">Lasă un mesaj</a>
-  </section>
-
-  <section class="section">
-    <h3>Servicii oferite</h3>
-    <ul style="list-style: none; padding: 0;">
-      <li>Renovări interioare și exterioare</li>
-      <li>Glet, vopsitorii, rigips, tencuieli</li>
-      <li>Montaj gresie, faianță și parchet</li>
-      <li>Placări decorative și finisaje moderne</li>
-    </ul>
-  </section>
-
-  <section class="section">
-    <p style="margin-bottom: 10px;">Vezi mai multe lucrări și clipuri pe paginile noastre de social media:</p>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/share/1Desu8qFpP/" target="_blank">Facebook</a>
-      <a href="https://www.tiktok.com/@antoneacdecoart?_t=ZN-8wqhOi2dX6s&_r=1" target="_blank">TikTok</a>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Antoneac Deco Art. Toate drepturile rezervate.</p>
-  </footer>
-
-  <a href="#contact" id="contactBtn">Contactează-ne</a>
-
   <script>
     function toggleMenu() {
       const menu = document.getElementById("menu");
       menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
     }
-
-    function applyShake(id) {
-      const btn = document.getElementById(id);
-      btn.classList.remove('shake');
-      void btn.offsetWidth;
-      btn.classList.add('shake');
-    }
-
-    setInterval(() => applyShake('btn1'), 5000);
-    setInterval(() => setTimeout(() => applyShake('btn2'), 2500), 5000);
-
-    let index = 0;
-    const track = document.getElementById('carouselTrack');
-    const images = track.querySelectorAll('img');
-
-    function moveToImage(i) {
-      index = (i + images.length) % images.length;
-      track.style.transform = 'translateX(' + (-index * 100) + '%)';
-    }
-
-    setInterval(() => moveToImage(index + 1), 5000);
-
-    function showImage(src) {
-      const modal = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      img.src = src;
-      modal.style.display = 'flex';
-    }
-
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
-
   </script>
 </body>
 </html>
