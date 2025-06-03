@@ -203,11 +203,39 @@
     background-color: #2c241d;
   }
 
+
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1002;
+    background-color: #0e0b09;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sticky-header img {
+    max-width: 200px;
+    height: auto;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .sticky-header.shrink img {
+    max-width: 120px;
+  }
+
+  .sticky-header.shrink {
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
 </style>
 </head>
 <body>
 
   <header>
+  <div class="sticky-header">
 
   <div class="hamburger" onclick="toggleMenu()">☰</div>
   <div class="menu" id="menu">
@@ -219,7 +247,8 @@
     <img src="logo-antoneac-deco-art.jpg" alt="Logo Antoneac Deco Art">
     <h1>Antoneac Deco Art</h1>
     <p>Eleganță în detaliu. Calitate în construcții.</p>
-  </header>
+    </div>
+</header>
 
   <div class="carousel-container">
     <button class="carousel-btn prev">&#10094;</button>
@@ -319,6 +348,16 @@
       const menu = document.getElementById("menu");
       menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
     }
+
+
+window.addEventListener("scroll", function () {
+  const header = document.querySelector(".sticky-header");
+  if (window.scrollY > 50) {
+    header.classList.add("shrink");
+  } else {
+    header.classList.remove("shrink");
+  }
+});
 
 </script>
 </body>
