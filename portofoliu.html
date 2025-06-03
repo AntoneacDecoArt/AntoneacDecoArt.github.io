@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portofoliu - Antoneac Deco Art</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #0e0b09;
+      color: #e5c189;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #1a1612;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    .filters {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .filters button {
+      background-color: #e5c189;
+      color: #0e0b09;
+      border: none;
+      padding: 10px 16px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 240px;
+      height: auto;
+      cursor: pointer;
+      border-radius: 6px;
+      border: 2px solid #e5c189;
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Portofoliu lucrări</h1>
+    <p>Alege o categorie pentru a vizualiza lucrările noastre</p>
+  </header>
+
+  <div class="filters">
+    <button onclick="filterGallery('all')">Toate</button>
+    <button onclick="filterGallery('interior')">Șcafuri și finisaje interioare</button>
+    <button onclick="filterGallery('fatade')">Fațade exterioare</button>
+    <button onclick="filterGallery('baie')">Amenajări băi</button>
+    <button onclick="filterGallery('trepte')">Trepte interioare</button>
+    <button onclick="filterGallery('pardoseli')">Gresie și pardoseli</button>
+    <button onclick="filterGallery('piatra')">Piatra decorativă & panouri 3D</button>
+  </div>
+
+  <div class="gallery" id="gallery">
+    <img src="poza1.jpg" data-category="interior" onclick="showLightbox(this.src)">
+    <img src="poza2.jpg" data-category="fatade" onclick="showLightbox(this.src)">
+    <img src="poza3.jpg" data-category="baie" onclick="showLightbox(this.src)">
+    <img src="poza4.jpg" data-category="trepte" onclick="showLightbox(this.src)">
+    <img src="poza5.jpg" data-category="pardoseli" onclick="showLightbox(this.src)">
+    <img src="poza6.jpg" data-category="piatra" onclick="showLightbox(this.src)">
+    <img src="poza7.jpg" data-category="interior" onclick="showLightbox(this.src)">
+    <img src="poza8.jpg" data-category="baie" onclick="showLightbox(this.src)">
+    <img src="poza9.jpg" data-category="fatade" onclick="showLightbox(this.src)">
+  </div>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" />
+  </div>
+
+  <script>
+    function filterGallery(category) {
+      const images = document.querySelectorAll('.gallery img');
+      images.forEach(img => {
+        img.style.display = (category === 'all' || img.dataset.category === category) ? 'block' : 'none';
+      });
+    }
+
+    function showLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      lb.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

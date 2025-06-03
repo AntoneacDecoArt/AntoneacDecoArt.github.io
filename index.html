@@ -1,76 +1,72 @@
+
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Antoneac Deco Art</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
       background-color: #0e0b09;
       color: #e5c189;
     }
+
     header {
-      background-color: #0e0b09;
+      position: relative;
       text-align: center;
       padding: 30px 20px;
+      background-color: #0e0b09;
     }
+
     header img {
       max-width: 200px;
       height: auto;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
-    header h1 {
-      margin: 10px 0 5px;
-      font-size: 28px;
-      letter-spacing: 2px;
-    }
-    .carousel-container {
-      position: relative;
-      max-width: 800px;
-      margin: auto;
-      overflow: hidden;
-      border-radius: 6px;
-    }
-    .carousel-track {
-      display: flex;
-      transition: transform 0.6s ease-in-out;
-    }
-    .carousel-track img {
-      width: 100%;
-      height: auto;
-      max-height: 350px;
-      object-fit: contain;
-      background: #000;
-      padding: 10px;
-      box-sizing: border-box;
-      flex-shrink: 0;
-      cursor: pointer;
-    }
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      border: none;
-      font-size: 24px;
-      padding: 10px 15px;
-      cursor: pointer;
-      z-index: 10;
-    }
-    .carousel-btn:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
-    .carousel-btn.prev { left: 0; }
-    .carousel-btn.next { right: 0; }
 
-    .hero {
+    .hamburger {
+      position: absolute;
+      top: 30px;
+      right: 20px;
+      cursor: pointer;
+      font-size: 28px;
+      color: #e5c189;
+      z-index: 1001;
+    }
+
+    .menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 100%;
       background-color: #1a1612;
-      padding: 40px 20px;
+      padding-top: 60px;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+      flex-direction: column;
+      z-index: 1000;
+    }
+
+    .menu a {
+      color: #e5c189;
+      text-decoration: none;
+      padding: 15px;
+      display: block;
+      font-size: 18px;
+      border-bottom: 1px solid #3a322b;
+    }
+
+    .menu a:hover {
+      background-color: #2c241d;
+    }
+
+    .hero, .section, footer {
       text-align: center;
+      padding: 40px 20px;
+      background-color: #1a1612;
     }
 
     .btn {
@@ -96,19 +92,6 @@
       animation: shake 0.5s ease-in-out;
     }
 
-    .section {
-      padding: 40px 20px;
-      background-color: #1a1612;
-      text-align: center;
-    }
-    .section ul {
-      list-style: none;
-      padding: 0;
-    }
-    .section ul li {
-      margin: 8px 0;
-    }
-
     .social-icons {
       margin-top: 20px;
     }
@@ -118,32 +101,6 @@
       color: #e5c189;
       font-size: 18px;
       text-decoration: none;
-    }
-
-    footer {
-      text-align: center;
-      background-color: #0e0b09;
-      color: #e5c189;
-      padding: 20px;
-      font-size: 14px;
-    }
-
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
     }
 
     #contactBtn {
@@ -169,35 +126,16 @@
 <body>
 
   <header>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
     <img src="logo-antoneac-deco-art.jpg" alt="Logo Antoneac Deco Art">
     <h1>Antoneac Deco Art</h1>
     <p>Eleganță în detaliu. Calitate în construcții.</p>
   </header>
 
-  <div class="carousel-container">
-    <button class="carousel-btn prev">&#10094;</button>
-    <div class="carousel-track" id="carouselTrack">
-      <img src="poza1.jpg" onclick="showImage(this.src)">
-      <img src="poza2.jpg" onclick="showImage(this.src)">
-      <img src="poza3.jpg" onclick="showImage(this.src)">
-      <img src="poza4.jpg" onclick="showImage(this.src)">
-      <img src="poza5.jpg" onclick="showImage(this.src)">
-      <img src="poza6.jpg" onclick="showImage(this.src)">
-      <img src="poza7.jpg" onclick="showImage(this.src)">
-    </div>
-    <button class="carousel-btn next">&#10095;</button>
-  </div>
-
-  <div class="section">
-    <p style="margin-bottom: 10px;">Vezi mai multe lucrări și clipuri pe paginile noastre de social media:</p>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/share/1Desu8qFpP/" target="_blank">Facebook</a>
-      <a href="https://www.tiktok.com/@antoneacdecoart?_t=ZN-8wqhOi2dX6s&_r=1" target="_blank">TikTok</a>
-    </div>
-  </div>
-
-  <div class="lightbox" id="lightbox" onclick="closeImage()">
-    <img id="lightbox-img" src="">
+  <div class="menu" id="menu">
+    <a href="#top" onclick="toggleMenu()">Home</a>
+    <a href="portofoliu.html" onclick="toggleMenu()">Portofoliu</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
   </div>
 
   <section class="hero" id="contact">
@@ -208,7 +146,7 @@
 
   <section class="section">
     <h3>Servicii oferite</h3>
-    <ul>
+    <ul style="list-style: none; padding: 0;">
       <li>Renovări interioare și exterioare</li>
       <li>Glet, vopsitorii, rigips, tencuieli</li>
       <li>Montaj gresie, faianță și parchet</li>
@@ -217,8 +155,11 @@
   </section>
 
   <section class="section">
-    <h3>Locație</h3>
-    <p>Suceava, România</p>
+    <p style="margin-bottom: 10px;">Vezi mai multe lucrări și clipuri pe paginile noastre de social media:</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/share/1Desu8qFpP/" target="_blank">Facebook</a>
+      <a href="https://www.tiktok.com/@antoneacdecoart?_t=ZN-8wqhOi2dX6s&_r=1" target="_blank">TikTok</a>
+    </div>
   </section>
 
   <footer>
@@ -228,34 +169,9 @@
   <a href="#contact" id="contactBtn">Contactează-ne</a>
 
   <script>
-    const track = document.getElementById('carouselTrack');
-    const images = track.querySelectorAll('img');
-    let index = 0;
-
-    function moveToImage(i) {
-      index = (i + images.length) % images.length;
-      track.style.transform = 'translateX(' + (-index * 100) + '%)';
-    }
-
-    document.querySelector('.next').addEventListener('click', () => {
-      moveToImage(index + 1);
-    });
-
-    document.querySelector('.prev').addEventListener('click', () => {
-      moveToImage(index - 1);
-    });
-
-    setInterval(() => moveToImage(index + 1), 5000);
-
-    function showImage(src) {
-      const modal = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      img.src = src;
-      modal.style.display = 'flex';
-    }
-
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
     }
 
     function applyShake(id) {
